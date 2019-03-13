@@ -1,0 +1,14 @@
+## macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Eclipse ###
+# General
+.buildpath
+.project
+.settings/*
+
+# User-specific stuff
+.idea
