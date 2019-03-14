@@ -1,20 +1,7 @@
-<?php get_header(); ?>
+<?php
 
-<div class="container">
-    <div class="row">
+define('BASE_PATH', realpath(dirname(__FILE__)));
 
-        <h1>Hello world!</h1>
+require('lib/autoload.php');
+require('system/MVC.php');
 
-        <?php
-        if (have_posts()) :
-            while (have_posts()) :
-                the_post();
-                the_content();
-            endwhile;
-        endif;
-        ?>
-
-    </div>
-</div>
-
-<?php get_footer(); ?>
