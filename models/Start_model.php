@@ -11,7 +11,11 @@ class Start_model
     function getBodyText()
     {
        global $post;
-       return get_permalink($post->ID);
+       $data = array(
+           'link' => get_permalink($post->ID),
+           'title' => get_the_title($post->ID)
+       );
+       return $data;
     }
 }
 

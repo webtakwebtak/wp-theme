@@ -56,4 +56,4 @@ defined('BASE_PATH') OR exit('No direct script access allowed');
  	<!-- REALLY stop The Loop. -->
  <?php endif; ?>
  
- <strong>HALLO <?php echo $test; ?></strong>
+ <strong>HALLO <?php echo $title; ?></strong>

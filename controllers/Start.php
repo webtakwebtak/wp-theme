@@ -15,9 +15,9 @@ class Start extends \System\Base
     function index()
     {
        // $this->cache->setViewCache('test',3000);
-        echo $this->model->models['start']->getBodyText();
-        $data = array('test' => 'Hallo nieuwss');
-        $this->view('test',$data);
+        $post =  $this->model->models['start']->getBodyText();
+       // $data = array('test' => $post);
+        $this->view('test',$post);
     }
 }
 
