@@ -10,5 +10,11 @@
 .project
 .settings/*
 
+#node
+node_modules/*
+
+#yarn
+yarn.lock
+
 # User-specific stuff
 .idea
