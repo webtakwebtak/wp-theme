@@ -26,7 +26,7 @@ class Base
     {
         $view_path =__DIR__.'/../views/'.$template.'.php';
         $output = $this->loadView($view_path,$variables);
-        if( $this->cache->cacheOn ){        
+        if( $this->cache->cacheViewOn ){        
             $this->cache->createViewCache($template,$output);
         }
         if ($print) {
@@ -37,10 +37,12 @@ class Base
         }
     }
     
-    private function loadView($view_path,$variables){
+    private function loadView($view_path,$variables = array()){
         if(file_exists($view_path)){
             // Extract the variables to a local namespace
-            extract($variables);
+            if($variables){
+                extract($variables);
+            }
             
             // Start output buffering
             ob_start();
@@ -52,6 +54,13 @@ class Base
             $output = ob_get_clean();
         }
         return $output;
+    }
+    
+    public function loadModel($name)
+    {
+        $modelname              = ucfirst($name).'_model';
+        $classname              = '\\Models\\'.$modelname;
+        $this->models{$name}    = new $classname;
     }
 
 }

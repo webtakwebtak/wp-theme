@@ -6,14 +6,17 @@ defined('BASE_PATH') OR exit('No direct script access allowed');
 
 class Model
 {
-    var $models;
+    var $cache;
     
-    public function __construct() {}
+    public function __construct() {
+        //load cache
+        $this->cache    = new \System\Cache;
+    }
     
-    public function loadModel($name)
-    {
-        $modelname = ucfirst($name).'_model';
-        $classname = '\\Models\\'.$modelname;
-        $this->models[$name] = new $classname;
+    public function modeloutput($data) {
+        if( $this->cache->cacheDatabaseOn ){
+            $this->cache->createDatabaseCache($data);
+        }
+        return $data;
     }
 }
