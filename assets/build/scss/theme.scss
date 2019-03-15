@@ -1,6 +1,13 @@
+//fontawsome
 $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
-@import "~bootstrap/dist/css/bootstrap";
+//overide bootstrap variables
+@import "_custom.scss";
 
-@import "_variables.scss"
+//bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+//variables
+@import "components/_header.scss";
+@import "components/_footer.scss";
