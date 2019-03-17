@@ -13,6 +13,10 @@ $( document ).ready(function() {
         });
      });
     
-    $(".slider-wrapper").slick();
+    $(".slider-wrapper").slick({     		
+    	dots: true,
+    	  infinite: false,
+    	  speed: 300,
+    });
     
 });

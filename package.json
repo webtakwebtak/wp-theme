@@ -27,10 +27,13 @@
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "bootstrap": "^4.3.1",
+    "copy-webpack-plugin": "^5.0.1",
     "file-loader": "^3.0.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "url-loader": "^1.1.2"
   }
 }

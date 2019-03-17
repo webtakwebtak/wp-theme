@@ -4,6 +4,8 @@ $slick-loader-path: "~slick-carousel/slick/" !default;
 $slick-arrow-color: black !default; 
 
 .slider-wrapper{
+	height:200px;
+	overflow:hidden;
 	.slide{
 		height:200px;
 		&.slider1{
@@ -16,4 +18,16 @@ $slick-arrow-color: black !default;
 			background-color:theme_color('tertiary');
 		}
 	}
+	.slick-prev {
+		left:25px;
+		z-index:9999;
+	}	
+	.slick-next {
+		right:25px;
+		z-index:9999;
+	}	
+	.slick-dots {
+		bottom:25px;
+		z-index:9999;
+	}	
 }
