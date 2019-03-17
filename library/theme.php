@@ -19,18 +19,11 @@ class Theme
         // Remove default image sizes here.
         add_filter( 'intermediate_image_sizes_advanced', array( $this, 'prefix_remove_default_images' ));
         
-        // Remove default image sizes here.
-        add_filter( 'wp_handle_upload', array( $this, 'wpse_256351_upload'), 10, 2  );
-        
         //ajax
         add_action( 'wp_ajax_my_action', array( $this, 'my_action' ));
         add_action( 'wp_ajax_nopriv_my_action', array( $this, 'my_action' ));
     }
 
-    function wpse_256351_upload( $upload, $context ) {
-        
-    }
-    
     function prefix_remove_default_images( $sizes ) {
         unset( $sizes['small']); // 150px
         unset( $sizes['medium']); // 300px
