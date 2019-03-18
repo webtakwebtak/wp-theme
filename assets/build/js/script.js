@@ -108,12 +108,16 @@ $( document ).ready(function() {
 	     }); 
 	});	
 	
-	 //resize alleen als scherm groter
-	$(window).on("scroll", function() {
-		//remove loaded
-		 $("img").not('.loaded,.notfirst').each(function() {  
+	var windowwidth = $(window).width();
+	 //only if window enlarged every 100px step
+	$(window).on("resize", function() {
+		if( $(window).width() > windowwidth + 100 ){
+		 $("img").not('.notfirst').each(function() {  
 			$(this).isInViewport();
 	     }); 
+		 windowwidth = $(window).width();
+		 $("img").removeClass("loaded");
+		}
 	});	
 	
     //load
