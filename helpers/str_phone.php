@@ -24,3 +24,8 @@ function str_phone(string $phone, string $prefix = '')
 
     return (string) $phone;
 }
+
+function getACFImage( $imagename,$class = null ) {
+    $image = get_field($imagename);
+    return '<img class="'.$class.'" src="'.$image['sizes']['sx'].'" alt=""  data-media-width="'.$image['width'].'" data-media-height="'.$image['height'].'">';
+}

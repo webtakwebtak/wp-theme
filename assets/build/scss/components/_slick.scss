@@ -4,10 +4,8 @@ $slick-loader-path: "~slick-carousel/slick/" !default;
 $slick-arrow-color: black !default; 
 
 .slider-wrapper{
-	height:200px;
 	overflow:hidden;
 	.slide{
-		height:200px;
 		&.slider1{
 			background-color:theme_color('primary');
 		}
