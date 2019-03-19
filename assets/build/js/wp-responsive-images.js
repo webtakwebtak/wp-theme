@@ -49,7 +49,7 @@
         	//only images in viewport
         	if(isImageInViewport(this)){
 	        	//exlude loaded en excluded selectors
-	        	if( !$(this).hasClass(settings.classloaded,settings.classexclude) ){
+	        	if( !$(this).hasClass(settings.classloaded) && !$(this).hasClass(settings.classexclude) ){
 	        		//only image tha are not full sized already	
 		        	if(isImageNotFullVersion(this)){
 		        		loadBestOptionImage(this);
@@ -93,9 +93,10 @@
         			newheight	= Math.round(imagesize/imgfeatures.ratio);
     	    		imgname		= imgfeatures.shortname+'-'+imagesize+'x'+newheight+'.'+imgfeatures.ext;
         		}
-        		$(obj).attr("src", imgfeatures.path+imgname);
-	    		$(obj).addClass("loaded");
+        		
         	}
+        	$(obj).attr("src", imgfeatures.path+imgname);
+    		$(obj).addClass("loaded");
         };
         
         function getNewImageIndex() {
@@ -149,9 +150,7 @@
     $.fn.replaceImagesViewport = function(options) {
     	
     	var windowwidth = $(this).width();
-    	var resizesteps = 150;
     	var scrolltop 	= $(this).scrollTop();
-    	var scrollsteps = 150;
 
     	//on load
     	$(this).ready(function () {
@@ -162,7 +161,7 @@
     	
     	//on scroll in steps
     	$(this).on("scroll", function() {
-    		if( Math.abs($(this).scrollTop() - scrolltop) > scrollsteps ){
+    		if( Math.abs($(this).scrollTop() - scrolltop) > options.scrollsteps ){
 	    		$("img").each(function() {  
 	    			 $(this).replaceImages(options);
 	    	    }); 
@@ -172,7 +171,7 @@
     	
     	//on resize in steps 
     	$(this).on("resize", function() {
-	   		if( $(this).width() > windowwidth + resizesteps ){
+	   		if( $(this).width() > windowwidth + options.resizesteps ){
 	   			$("img").removeClass("loaded");
 	   			$("img").each(function() {  
 	   				$(this).replaceImages(options);

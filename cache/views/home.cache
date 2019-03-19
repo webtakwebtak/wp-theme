@@ -65,14 +65,13 @@ var ajax_object = {"ajax_url":"http:\/\/localhost\/project\/web\/wp\/wp-admin\/a
         
         	<div class="col-12 p-3 p-lg-5">
         		
-        		<img class="alignnone" src="http://localhost/project/web/app/uploads/people-50x33.jpg" alt=""  data-media-width="2000" data-media-height="1331">        		
-        		
+        		<img class="alignnone" src="http://localhost/project/web/app/uploads/people-50x33.jpg" alt=""  data-media-width="2000" data-media-height="1331">        		<img class="alignnone" src="" alt=""  data-media-width="" data-media-height="">        		
         		<br><br>
         		
         		 <div class="slider-wrapper">
                     <div class="slide"><img class="alignnone" src="http://localhost/project/web/app/uploads/gallery3-50x33.jpg" alt=""  data-media-width="1600" data-media-height="1067"></div>
-                    <div class="slide"><img class="alignnone notfirst" src="http://localhost/project/web/app/uploads/gallery2-50x33.jpg" alt=""  data-media-width="1600" data-media-height="1047"></div>
-                    <div class="slide"><img class="alignnone notfirst" src="http://localhost/project/web/app/uploads/gallery1-50x33.jpg" alt=""  data-media-width="1600" data-media-height="1050"></div>
+                    <div class="slide"><img class="alignnone" src="http://localhost/project/web/app/uploads/gallery2-50x33.jpg" alt=""  data-media-width="1600" data-media-height="1047"></div>
+                    <div class="slide"><img class="alignnone" src="http://localhost/project/web/app/uploads/gallery1-50x33.jpg" alt=""  data-media-width="1600" data-media-height="1050"></div>
                   </div>
         	
         		<h1>H1- Donec condimentum ante ac nulla condimentum</h1>

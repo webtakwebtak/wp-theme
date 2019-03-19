@@ -28,6 +28,8 @@ $( document ).ready(function() {
     	debug: true,
 		classloaded: 'loaded', 
 		classexclude: 'excluded', 
+		resizesteps: 150,
+		scrollsteps: 150,
 		responsive: [
 			 {
 				 breakpoint: 1140,
@@ -35,7 +37,7 @@ $( document ).ready(function() {
 			 },
 			 {
 				 breakpoint: 960,
-				 imagesize: 'full'
+				 imagesize: 1140
 			 },
 			 {
 				 breakpoint: 720,
@@ -46,8 +48,12 @@ $( document ).ready(function() {
 				 imagesize: 720
 			 },
 			 {
-				 breakpoint: 400,
+				 breakpoint: 300,
 				 imagesize: 540
+			 },
+			 {
+				 breakpoint: 150,
+				 imagesize: 50
 			 }
 	     ]	
     });

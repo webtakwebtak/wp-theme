@@ -11,14 +11,14 @@ defined('BASE_PATH') OR exit('No direct script access allowed');
         	<div class="col-12 p-3 p-lg-5">
         		
         		<?php echo getACFImage('footer_image','alignnone'); ?>
-        		
+        		<?php echo getACFImage('header_image','alignnone'); ?>
         		
         		<br><br>
         		
         		 <div class="slider-wrapper">
                     <div class="slide"><?php echo getACFImage('gallery1','alignnone'); ?></div>
-                    <div class="slide"><?php echo getACFImage('gallery2','alignnone notfirst'); ?></div>
-                    <div class="slide"><?php echo getACFImage('gallery3','alignnone notfirst'); ?></div>
+                    <div class="slide"><?php echo getACFImage('gallery2','alignnone'); ?></div>
+                    <div class="slide"><?php echo getACFImage('gallery3','alignnone'); ?></div>
                   </div>
         	
         		<h1>H1- Donec condimentum ante ac nulla condimentum</h1>
