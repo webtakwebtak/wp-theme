@@ -15,6 +15,7 @@
     		debug: false,
     		classloaded: 'loaded', 
     		classexclude: 'excluded', 
+    		classfull: '', 
     		responsive: [
 				 {
 					 breakpoint: 1140,
@@ -49,7 +50,9 @@
         	//only images in viewport
         	if(isImageInViewport(this)){
 	        	//exlude loaded en excluded selectors
-	        	if( !$(this).hasClass(settings.classloaded) && !$(this).hasClass(settings.classexclude) ){
+	        	if( !$(this).hasClass(settings.classloaded) && 
+	        		!$(this).hasClass(settings.classexclude) && 
+	        		!$(this).hasClass(settings.classfull) ){
 	        		//only image tha are not full sized already	
 		        	if(isImageNotFullVersion(this)){
 		        		loadBestOptionImage(this);

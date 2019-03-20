@@ -22,10 +22,10 @@ class Theme
         //Images
         add_filter( 'intermediate_image_sizes_advanced', array( $this, 'remove_default_images' ));
         add_action( 'after_setup_theme', array( $this, 'add_image_sizes') );
-        //add_filter( 'image_size_names_choose', array( $this, 'choose_on_insert') );
+        add_filter( 'image_size_names_choose', array( $this, 'choose_on_insert') );
         add_action('after_setup_theme', array( $this,'default_image_size'));
         add_filter('max_srcset_image_width', create_function('', 'return 1;'));
-        add_filter( 'image_send_to_editor', array( $this,'add_custom_data_attribute_send_to_editor'), 10, 8 );
+        add_filter( 'image_send_to_editor', array( $this,'add_custom_data_attribute'), 10, 8 );
         
         //ajax
         add_action( 'wp_ajax_my_action', array( $this, 'my_action' ));
@@ -41,7 +41,7 @@ class Theme
     }
     
     public function add_image_sizes() {
-        add_image_size( 'sx', 50, '', false );
+        add_image_size( 'xs', 50, '', false );
         add_image_size( 'sm', 540, '', false );
         add_image_size( 'md', 720,  '',false );
         add_image_size( 'lg', 960,  '',false);
@@ -51,12 +51,12 @@ class Theme
     public function choose_on_insert( $sizes ) {
         return array_merge( $sizes, array(
             'md' => __('Medium'),
-            'sx' => __('Extra small'),
+            'xs' => __('Extra small'),
         ) );
     }
     
     public function default_image_size() {
-        update_option('image_default_size', 'sx' );  
+        update_option('image_default_size', 'xs' );  
     }
 
     public function addSupport()
@@ -65,13 +65,24 @@ class Theme
         add_theme_support('post-thumbnails');
     }
   
-    function add_custom_data_attribute_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt ){
+    function add_custom_data_attribute( $html, $id, $caption, $title, $align, $url, $size, $alt ){
         if( $id > 0 ){
-            $small = wp_get_attachment_image_src($id, 'sx'); // get media full size url
+            $small = wp_get_attachment_image_src($id, 'xs'); // get media full size url
+           
+            /*
+            $images =  wp_get_attachment_metadata('98');
+            $list = array();
+            foreach($images['sizes'] as $image){
+                $list[] = $image['file'];
+            }
+            $data .= sprintf( ' data-sizes="%s" ',"['".implode("','",$list)."']" ); // get original height
+            */
+            
             $img_size = wp_get_attachment_image_src($id, 'full'); // get media full size url
             $data .= sprintf( ' data-media-width="%s" ', $img_size[1] ); // get original width
             $data .= sprintf( ' data-media-height="%s" ', $img_size[2] ); // get original height
-            $html = str_replace( $img_size[0], $small[0], $html ); // replace and add custom attributes
+           
+            //$html = str_replace( $img_size[0], $small[0], $html ); // replace and add custom attributes
             $html = str_replace( "<img src", "<img{$data}src", $html ); // replace and add custom attributes
             
         }
