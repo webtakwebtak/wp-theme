@@ -26,6 +26,7 @@ class Theme
         add_action('after_setup_theme', array( $this,'default_image_size'));
         add_filter('max_srcset_image_width', create_function('', 'return 1;'));
         add_filter( 'image_send_to_editor', array( $this,'add_custom_data_attribute'), 10, 8 );
+        add_filter( 'pre_option_uploads_use_yearmonth_folders', '__return_zero'); 
         
         //ajax
         add_action( 'wp_ajax_my_action', array( $this, 'my_action' ));
@@ -67,22 +68,12 @@ class Theme
   
     function add_custom_data_attribute( $html, $id, $caption, $title, $align, $url, $size, $alt ){
         if( $id > 0 ){
-            $small = wp_get_attachment_image_src($id, 'xs'); // get media full size url
-           
-            /*
-            $images =  wp_get_attachment_metadata('98');
-            $list = array();
-            foreach($images['sizes'] as $image){
-                $list[] = $image['file'];
-            }
-            $data .= sprintf( ' data-sizes="%s" ',"['".implode("','",$list)."']" ); // get original height
-            */
-            
-            $img_size = wp_get_attachment_image_src($id, 'full'); // get media full size url
+            $small      = wp_get_attachment_image_src($id, 'xs'); // get media full size url
+            $img_size   = wp_get_attachment_image_src($id, 'full'); // get media full size url
             $data .= sprintf( ' data-media-width="%s" ', $img_size[1] ); // get original width
             $data .= sprintf( ' data-media-height="%s" ', $img_size[2] ); // get original height
-           
-            //$html = str_replace( $img_size[0], $small[0], $html ); // replace and add custom attributes
+            $html = str_replace("size-full","", $html ); // replace szie-full
+            $html = str_replace( $img_size[0], $small[0], $html ); // replace and add custom attributes
             $html = str_replace( "<img src", "<img{$data}src", $html ); // replace and add custom attributes
             
         }

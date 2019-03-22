@@ -26,10 +26,9 @@ $( document ).ready(function() {
     //call responsive-image-plugin
     $(window).replaceImagesViewport({
     	debug: true,
-		classloaded: 'loaded', 
-		classexclude: 'excluded', 
-		resizesteps: 150,
-		scrollsteps: 150,
+		loadedclass: 'loaded', 
+		excludedclass: 'excluded', 
+		slickclass: 'slider-wrapper',
 		responsive: [
 			 {
 				 breakpoint: 1140,

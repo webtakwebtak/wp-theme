@@ -13,9 +13,9 @@
     	
     	var settings = $.extend({
     		debug: false,
-    		classloaded: 'loaded', 
-    		classexclude: 'excluded', 
-    		classfull: '', 
+    		loadedclass: 'loaded', 
+    		excludedclass: 'excluded', 
+    		fullclass: 'size-full', 
     		responsive: [
 				 {
 					 breakpoint: 1140,
@@ -50,9 +50,9 @@
         	//only images in viewport
         	if(isImageInViewport(this)){
 	        	//exlude loaded en excluded selectors
-	        	if( !$(this).hasClass(settings.classloaded) && 
-	        		!$(this).hasClass(settings.classexclude) && 
-	        		!$(this).hasClass(settings.classfull) ){
+	        	if( !$(this).hasClass(settings.loadedclass) && 
+	        		!$(this).hasClass(settings.excludedclass) && 
+	        		!$(this).hasClass(settings.fullclass) ){
 	        		//only image tha are not full sized already	
 		        	if(isImageNotFullVersion(this)){
 		        		loadBestOptionImage(this);
@@ -154,6 +154,12 @@
     	
     	var windowwidth = $(this).width();
     	var scrolltop 	= $(this).scrollTop();
+    	
+    	var settings = $.extend({
+    		scrollsens: 150,
+    		resizesens: 150, 
+    		slickclass: 'slider-wrapper'
+        }, options );
 
     	//on load
     	$(this).ready(function () {
@@ -164,7 +170,7 @@
     	
     	//on scroll in steps
     	$(this).on("scroll", function() {
-    		if( Math.abs($(this).scrollTop() - scrolltop) > options.scrollsteps ){
+    		if( Math.abs($(this).scrollTop() - scrolltop) > settings.scrollsens ){
 	    		$("img").each(function() {  
 	    			 $(this).replaceImages(options);
 	    	    }); 
@@ -174,7 +180,7 @@
     	
     	//on resize in steps 
     	$(this).on("resize", function() {
-	   		if( $(this).width() > windowwidth + options.resizesteps ){
+	   		if( Math.abs($(this).width() - windowwidth) > settings.resizesens ){
 	   			$("img").removeClass("loaded");
 	   			$("img").each(function() {  
 	   				$(this).replaceImages(options);
@@ -184,7 +190,7 @@
    	 	});	
     	
     	//on load slide with slick slider
-    	 $(".slider-wrapper").on('afterChange', function(event, slick, currentSlide){
+    	 $("."+settings.slickclass).on('afterChange', function(event, slick, currentSlide){
 			$(this).find(".slick-current img").replaceImages(options);
 		 });
 
