@@ -28,11 +28,20 @@ class Theme
         add_filter( 'image_send_to_editor', array( $this,'add_custom_data_attribute'), 10, 8 );
         add_filter( 'pre_option_uploads_use_yearmonth_folders', '__return_zero'); 
         
+        //remove widget
+        add_action( 'wp_network_dashboard_setup', array( $this,'dweandw_remove'), 20 );
+        add_action( 'wp_user_dashboard_setup',array( $this,'dweandw_remove'), 20 );
+        add_action( 'wp_dashboard_setup',array( $this,'dweandw_remove'), 20 );
+        
         //ajax
         add_action( 'wp_ajax_my_action', array( $this, 'my_action' ));
         add_action( 'wp_ajax_nopriv_my_action', array( $this, 'my_action' ));
     }
 
+    public function dweandw_remove() {
+        remove_meta_box( 'dashboard_primary', get_current_screen(), 'side' );
+    }
+    
     public function remove_default_images( $sizes ) {
         unset( $sizes['small']); // 150px
         unset( $sizes['medium']); // 300px
