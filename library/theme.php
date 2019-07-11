@@ -33,11 +33,22 @@ class Theme
         add_action( 'wp_user_dashboard_setup',array( $this,'dweandw_remove'), 20 );
         add_action( 'wp_dashboard_setup',array( $this,'dweandw_remove'), 20 );
         
+        //remove update links
+        remove_action( 'load-update-core.php', array( $this,'wp_update_plugins') );
+        add_filter('pre_site_transient_update_core', array( $this,'remove_core_updates'));
+        add_filter('pre_site_transient_update_plugins', array( $this,'remove_core_updates'));
+        add_filter('pre_site_transient_update_themes', array( $this,'remove_core_updates'));
+        
         //ajax
         add_action( 'wp_ajax_my_action', array( $this, 'my_action' ));
         add_action( 'wp_ajax_nopriv_my_action', array( $this, 'my_action' ));
     }
 
+    public function remove_core_updates(){
+        global $wp_version;
+        return(object) array('last_checked'=> time(),'version_checked'=> $wp_version);
+    }
+    
     public function dweandw_remove() {
         remove_meta_box( 'dashboard_primary', get_current_screen(), 'side' );
     }
